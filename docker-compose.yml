@@ -1,0 +1,18 @@
+services:
+  nginx:
+    image: openresty/openresty:alpine
+    container_name: nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./scripts:/scripts
+      - ./nginx/logs:/var/log/nginx/
+      - ./nginx/cache:/var/cache/nginx
+      - ./imgs:/imgs
+    ports:
+      - "8000:8000"
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
